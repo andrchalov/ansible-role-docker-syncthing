@@ -1,4 +1,10 @@
 ---
+- name: Create syncthing directory
+  file:
+    dest: "{{syncthing_path}}"
+    mode: "0700"
+    state: directory
+
 - name: Create syncthing config directory
   file:
     dest: "{{syncthing_config_path}}"
