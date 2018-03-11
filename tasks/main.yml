@@ -11,9 +11,7 @@
     name: "{{syncthing_docker_name}}"
     image: "{{syncthing_docker_image}}"
     volumes: "{{syncthing_default_mounts}} + {{syncthing_mounts}}"
-    published_ports:
-      - 8384:8384
-      - 22000:22000
+    published_ports: "{{syncthing_published_ports}}"
     restart_policy: always
     restart: "{{__syncthing_restart | default(false)}}"
     pull: "{{__syncthing_restart | default(false)}}"
