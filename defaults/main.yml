@@ -1,0 +1,6 @@
+---
+syncthing_config_path: /srv/syncthing
+syncthing_docker_name: syncthing
+syncthing_docker_image: syncthing/syncthing:latest
+syncthing_default_mounts:
+  - "{{syncthing_config_path}}:/var/syncthing/config:rw"

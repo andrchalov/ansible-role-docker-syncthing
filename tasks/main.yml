@@ -1,0 +1,20 @@
+---
+- name: Create syncthing config directory
+  file:
+    dest: "{{syncthing_config_path}}"
+    owner: 1000
+    group: 1000
+    state: directory
+
+- name: (Re)start syncthing container
+  docker_container:
+    name: "{{syncthing_docker_name}}"
+    image: "{{syncthing_docker_image}}"
+    volumes: "{{syncthing_default_mounts}} + {{syncthing_mounts}}"
+    published_ports:
+      - 8384:8384
+      - 22000:22000
+    restart_policy: always
+    restart: "{{__syncthing_restart | default(false)}}"
+    pull: "{{__syncthing_restart | default(false)}}"
+    state: started
